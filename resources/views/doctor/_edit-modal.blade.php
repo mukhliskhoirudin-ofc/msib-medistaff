@@ -1,9 +1,8 @@
-<div class="modal fade" id="createDropModal" data-bs-backdrop="static" tabindex="-1">
+<div class="modal fade" id="editDropModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
-        <form action="{{ route('doctor.store') }}" method="POST" class="modal-content">
-            @csrf
+        <form class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createDropModalTitle">Create Doctor</h5>
+                <h5 class="modal-title" id="editDropModalTitle">Edit Doctor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -36,7 +35,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>
