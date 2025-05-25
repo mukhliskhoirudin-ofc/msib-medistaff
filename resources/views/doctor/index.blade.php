@@ -17,14 +17,9 @@
             <div class="card-header d-flex justify-content-between align-items-center px-4 py-4">
                 <h5 class="mb-0">Daftar Doctor</h5>
 
-                {{-- [Modalcreate dan edit] --}}
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDropModal">
-                    Create
-                </button>
-                @include('doctor._create-modal')
-                @include('doctor._edit-modal')
-                {{-- [endModal] --}}
-
+                <a href="{{ route('doctor.create') }}">
+                    <button type="button" class="btn btn-md rounded-pill btn-primary px-4">Create</button>
+                </a>
             </div>
             {{-- [TblDoctor] --}}
             <div class="table-responsive">
@@ -63,16 +58,18 @@
                                             <a class="dropdown-item" href="{{ route('doctor.show', $doctor) }}">
                                                 <i class="bx bx-show me-1"></i> Show
                                             </a>
-                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#editDropModal"><i class="bx bx-edit-alt me-1"></i>
+                                            <a class="dropdown-item" href="{{ route('doctor.edit', $doctor) }}"><i
+                                                    class="bx bx-edit-alt me-1"></i>
                                                 Edit
-                                            </button>
+                                            </a>
 
-                                            <form action="#" method="post">
-                                                @method('delete')
+                                            <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this doctor?');">
                                                 @csrf
-                                                <button class="dropdown-item"><i
-                                                        class="bx bx-trash me-1"></i>Delete</button>
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    <i class="bx bx-trash me-1"></i> Delete
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
