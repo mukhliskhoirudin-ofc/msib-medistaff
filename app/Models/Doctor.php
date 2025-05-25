@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Doctor extends Model
 {
@@ -14,5 +15,15 @@ class Doctor extends Model
 
     protected $table = 'doctors';
 
-    protected $fillable = ['name', 'email', 'phone', 'gender'];
+    protected $fillable = ['uuid', 'name', 'email', 'phone', 'gender'];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = Str::uuid();
+        });
+    }
 }
