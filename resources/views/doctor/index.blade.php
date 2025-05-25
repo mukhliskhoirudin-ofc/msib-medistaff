@@ -42,7 +42,7 @@
                     <tbody class="table-border-bottom-0">
                         @forelse ($doctors as $doctor)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $doctors->firstItem() + $loop->index }}</td>
                                 <td>{{ $doctor->name }}</td>
                                 <td>{{ $doctor->email }}</td>
                                 <td>{{ $doctor->phone }}</td>
@@ -85,6 +85,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-end mt-4 px-3">
+                    {{ $doctors->links() }}
+                </div>
             </div>
             {{-- [endTblDoctor] --}}
         </div>
