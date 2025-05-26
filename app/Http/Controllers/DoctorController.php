@@ -12,10 +12,10 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::latest()->select(['id', 'uuid', 'name', 'email', 'phone', 'gender'])->paginate(10);
+        $doctors = Doctor::latest()->select(['id', 'uuid', 'name', 'email', 'phone', 'gender'])->paginate(10);
 
         return view('doctor.index', [
-            'doctors' => $doctor
+            'doctors' => $doctors
         ]);
     }
 
@@ -24,7 +24,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('doctor.create');
     }
 
     /**
@@ -32,7 +32,16 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'   => 'required|string|min:3|max:255',
+            'email'  => 'required|email:dns|unique:doctors,email',
+            'phone'  => 'required|digits_between:8,15',
+            'gender' => 'required|in:male,female',
+        ]);
+
+        Doctor::create($validated);
+
+        return redirect()->route('doctor.index')->with('success', 'Doctor created successfully.');
     }
 
     /**
@@ -50,15 +59,26 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        //
+        return view('doctor.edit', [
+            'doctor' => $doctor
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        //
+        $validated = $request->validate([
+            'name'   => 'required|string|min:3|max:255',
+            'email'  => 'required|email:dns|unique:doctors,email,' . $doctor->id,
+            'phone'  => 'required|digits_between:8,15',
+            'gender' => 'required|in:male,female',
+        ]);
+
+        $doctor->update($validated);
+
+        return redirect()->route('doctor.index')->with('success', 'Doctor updated successfully.');
     }
 
     /**

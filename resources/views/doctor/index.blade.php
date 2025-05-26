@@ -13,6 +13,13 @@
             </li>
         </ol>
 
+        @session('success')
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endsession
+
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center px-4 py-4">
                 <h5 class="mb-0">Daftar Doctor</h5>

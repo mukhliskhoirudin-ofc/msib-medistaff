@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::resource('doctor', DoctorController::class)->names('doctor');
 //tambahan jika costum pakai uuid/slug/dll
 Route::get('doctor/{doctor:uuid}', [DoctorController::class, 'show'])->name('doctor.show');
+Route::get('doctor/{doctor:uuid}/edit', [DoctorController::class, 'edit'])->name('doctor.edit');
 
 
 //route doctor versi manual:
