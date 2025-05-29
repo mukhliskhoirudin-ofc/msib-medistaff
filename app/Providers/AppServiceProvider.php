@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Doctor;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +23,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+
+        //costum binding
+        Route::bind('doctor', function ($value) {   //doctor diambil dari route doctor
+            return Doctor::select('uuid', 'name', 'email', 'gender', 'phone', 'created_at', 'updated_at')
+                ->where('uuid', $value)
+                ->firstOrFail();
+        });
     }
 }

@@ -7,11 +7,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-//route doctor versi resource:
+// //route doctor versi resource:
 Route::resource('doctor', DoctorController::class)->names('doctor');
-//tambahan jika costum pakai uuid/slug/dll
-Route::get('doctor/{doctor:uuid}', [DoctorController::class, 'show'])->name('doctor.show');
-Route::get('doctor/{doctor:uuid}/edit', [DoctorController::class, 'edit'])->name('doctor.edit');
+
+//tambahan jika costum pakai uuid/slug/dll atau pakai return di model
+// Route::get('doctor/{doctor:uuid}', [DoctorController::class, 'show'])->name('doctor.show');
+// Route::get('doctor/{doctor:uuid}/edit', [DoctorController::class, 'edit'])->name('doctor.edit');
 
 
 //route doctor versi manual:

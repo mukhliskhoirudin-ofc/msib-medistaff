@@ -15,7 +15,7 @@ class Doctor extends Model
 
     protected $table = 'doctors';
 
-    protected $fillable = ['uuid', 'name', 'email', 'phone', 'gender'];
+    protected $fillable = ['name', 'email', 'phone', 'gender'];
 
 
     protected static function boot()
@@ -25,5 +25,11 @@ class Doctor extends Model
         static::creating(function ($model) {
             $model->uuid = Str::uuid();
         });
+    }
+
+    //ini untuk route resource tapi mau pake uuid (rekomendasi)
+    public function getRouteKeyName()
+    {
+        return 'uuid';
     }
 }

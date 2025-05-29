@@ -70,7 +70,7 @@
                                                 Edit
                                             </a>
 
-                                            <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST"
+                                            <form action="{{ route('doctor.destroy', $doctor) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this doctor?');">
                                                 @csrf
                                                 @method('DELETE')

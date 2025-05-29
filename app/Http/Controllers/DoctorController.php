@@ -12,7 +12,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::latest()->select(['id', 'uuid', 'name', 'email', 'phone', 'gender'])->paginate(10);
+        $doctors = Doctor::latest()->select(['uuid', 'name', 'email', 'phone', 'gender'])->paginate(10);
 
         return view('doctor.index', [
             'doctors' => $doctors
