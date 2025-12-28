@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
         //costum binding
         Route::bind('doctor', function ($value) {   //doctor diambil dari route doctor
-            return Doctor::select('uuid', 'name', 'email', 'gender', 'phone', 'created_at', 'updated_at')
+            return Doctor::select('id', 'uuid', 'name', 'email', 'gender', 'phone', 'created_at', 'updated_at')
                 ->where('uuid', $value)
                 ->firstOrFail();
         });
